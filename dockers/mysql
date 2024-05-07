@@ -1,0 +1,5 @@
+sudo docker run --name scb-server -p 33077:33077 -v /root/data/scb:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=root -d mysql:latest
+ALTER USER 'root'@'%' IDENTIFIED BY 'fuckyou520';
+FLUSH PRIVILEGES;
+
+ALTER user 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'fuckyou520';

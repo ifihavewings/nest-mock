@@ -14,12 +14,13 @@ const dog_controller_1 = require("./dog/dog.controller");
 const cat_module_1 = require("./cat/cat.module");
 const fish_module_1 = require("./fish/fish.module");
 const sys_module_1 = require("./sys/sys.module");
+const matierals_module_1 = require("./matierals/matierals.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [cat_module_1.CatsModule, fish_module_1.FishModule, sys_module_1.SysModule],
+        imports: [cat_module_1.CatsModule, fish_module_1.FishModule, sys_module_1.SysModule, matierals_module_1.MatieralsModule,],
         controllers: [app_controller_1.AppController, dog_controller_1.DogController],
         providers: [app_service_1.AppService],
     })

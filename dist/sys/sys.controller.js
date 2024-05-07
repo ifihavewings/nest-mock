@@ -32,4 +32,5 @@ __decorate([
 exports.SysController = SysController = __decorate([
     (0, common_1.Controller)('sys')
 ], SysController);
+;
 //# sourceMappingURL=sys.controller.js.map
