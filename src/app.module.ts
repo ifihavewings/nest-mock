@@ -6,16 +6,12 @@ import { CatsModule } from './cat/cat.module';
 import { FishModule } from './fish/fish.module';
 import { SysModule } from './sys/sys.module';
 import { MatieralsModule } from './matierals/matierals.module';
-// import {MySQLModule} from "./mysql/mysql.module"
+import {MySQLModule} from "./mysql/mysql.module"
+import {MYSQL} from "../confs"
 
-// MySQLModule.forRoot({
-//   host: 'localhost',
-//   user: 'root',
-//   password: 'password',
-//   database: 'mydatabase',
-// }),
+
 @Module({
-  imports: [CatsModule, FishModule, SysModule, MatieralsModule,],
+  imports: [CatsModule, FishModule, SysModule, MatieralsModule,MySQLModule.forRoot(MYSQL),],
   controllers: [AppController, DogController],
   providers: [AppService],
 })

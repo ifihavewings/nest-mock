@@ -324,4 +324,10 @@ export class MatieralsController {
             "total": 40
         }
     }
+    @Post('upload')
+    upload() {
+        return {
+            code: 'ok'
+        }
+    }
 }
