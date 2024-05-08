@@ -1,7 +1,16 @@
-import { Controller, Param, Post, Body, UseInterceptors, UploadedFiles } from '@nestjs/common';
+import { Controller, Param, Post, Body, UseInterceptors, UploadedFiles,  UploadedFile} from '@nestjs/common';
 import {MatieralsService} from "./matierals.service"
 import { AnyFilesInterceptor } from '@nestjs/platform-express';
 import {FileUploadDTO} from "./dto/fileUpload.dto"
+import {FileListParam} from "./interface"
+
+import { diskStorage } from 'multer';
+import { extname } from 'path';
+import {FileInterceptor} from "@nestjs/platform-express"
+import {join} from "path"
+import { writeFile } from 'fs/promises';  
+
+let fname = ''
 @Controller('matierals')
 export class MatieralsController {
 
@@ -10,337 +19,49 @@ export class MatieralsController {
     }
 
     @Post('list')
-    getList() {
+    async getList(@Body() body:FileListParam ) {
+        const res = await this.matieralsService.findAll(body)
+        console.log(res)
+        const {data: records, total} = res
         return {
-            current: 1,
+            current: records.length,
             hitCount: false,
             optimizeCountSql: true,
             orders: [],
-            pages: 4,
-            records: [
-                {
-                    "accreditOpinio": "1",
-                    "accreditStatus": 1,
-                    "applyId": 1603302072676397058,
-                    "applyPerson": "zhangsan3",
-                    "applyTime": "2024-01-12 13:57:56",
-                    "auditId": 1603302337840295937,
-                    "auditPerson": "zhangsan4",
-                    "auditTime": "2024-01-12 13:59:09",
-                    "creditBillAmount": 0.02,
-                    "creditBillCode": "L20230209151602186190028",
-                    "creditBillNo": 40000.00,
-                    "creditBillRatio": 40.00,
-                    "creditBillRemainAmount": 0.02,
-                    "custId": 154,
-                    "custName": "太原市第一建筑工程集团有限公司湖北分公司",
-                    "deepth": 3,
-                    "fatherBillCode": "L20230209151602186190020",
-                    "fatherCreditBillAmount": 3.00,
-                    "fatherTranferName": "丛林铝业科技（山东）有限责任公司",
-                    "id": 1000744,
-                    "paymentDate": "20240201",
-                    "recId": 671,
-                    "supplierEntId": "213",
-                    "supplierName": "北京科星易成科技有限公司",
-                    "tranferId": "200",
-                    "tranferName": "首航高科能源技术股份有限公司",
-                    "transferredAmount": 0.00,
-                    "whetherFinancing": "0",
-                    "whetherFlow": "0"
-                },
-                {
-                    "accreditStatus": 0,
-                    "applyId": 1623874229693837314,
-                    "applyPerson": "测试五",
-                    "applyTime": "2024-01-10 16:44:12",
-                    "creditBillAmount": 0.02,
-                    "creditBillCode": "L20230209151602186190027",
-                    "creditBillNo": 40000.00,
-                    "creditBillRatio": 40.00,
-                    "creditBillRemainAmount": 0.02,
-                    "custId": 154,
-                    "custName": "太原市第一建筑工程集团有限公司湖北分公司",
-                    "deepth": 3,
-                    "fatherBillCode": "L20230209151602186190018",
-                    "fatherCreditBillAmount": 0.88,
-                    "fatherTranferName": "丛林铝业科技（山东）有限责任公司",
-                    "id": 1000743,
-                    "paymentDate": "20240201",
-                    "recId": 671,
-                    "supplierEntId": "213",
-                    "supplierName": "北京科星易成科技有限公司",
-                    "tranferId": "200",
-                    "tranferName": "首航高科能源技术股份有限公司",
-                    "transferredAmount": 0.00,
-                    "whetherFinancing": "0",
-                    "whetherFlow": "0"
-                },
-                {
-                    "accreditOpinio": "123123",
-                    "accreditStatus": 1,
-                    "applyId": 1603302072676397058,
-                    "applyPerson": "zhangsan3",
-                    "applyTime": "2023-08-03 11:00:11",
-                    "auditId": 1603302337840295937,
-                    "auditPerson": "zhangsan4",
-                    "auditTime": "2023-08-03 11:00:58",
-                    "creditBillAmount": 0.10,
-                    "creditBillCode": "L20230209151602186190026",
-                    "creditBillNo": 40000.00,
-                    "creditBillRatio": 40.00,
-                    "creditBillRemainAmount": 0.10,
-                    "custId": 154,
-                    "custName": "太原市第一建筑工程集团有限公司湖北分公司",
-                    "deepth": 3,
-                    "fatherBillCode": "L20230209151602186190018",
-                    "fatherCreditBillAmount": 0.88,
-                    "fatherTranferName": "丛林铝业科技（山东）有限责任公司",
-                    "id": 1000709,
-                    "paymentDate": "20240201",
-                    "recId": 671,
-                    "supplierEntId": "223",
-                    "supplierName": "北京新橙科技有限公司",
-                    "tranferId": "200",
-                    "tranferName": "首航高科能源技术股份有限公司",
-                    "transferredAmount": 0.00,
-                    "whetherFinancing": "0",
-                    "whetherFlow": "0"
-                },
-                {
-                    "accreditOpinio": "123123",
-                    "accreditStatus": 1,
-                    "applyId": 1603302072676397058,
-                    "applyPerson": "zhangsan3",
-                    "applyTime": "2023-08-03 09:32:26",
-                    "auditId": 1603302337840295937,
-                    "auditPerson": "zhangsan4",
-                    "auditTime": "2023-08-03 09:34:37",
-                    "creditBillAmount": 0.32,
-                    "creditBillCode": "L20230209151602186190025",
-                    "creditBillNo": 40000.00,
-                    "creditBillRatio": 40.00,
-                    "creditBillRemainAmount": 0.32,
-                    "custId": 154,
-                    "custName": "太原市第一建筑工程集团有限公司湖北分公司",
-                    "deepth": 3,
-                    "fatherBillCode": "L20230209151602186190020",
-                    "fatherCreditBillAmount": 3.00,
-                    "fatherTranferName": "丛林铝业科技（山东）有限责任公司",
-                    "id": 1000708,
-                    "paymentDate": "20240201",
-                    "recId": 671,
-                    "supplierEntId": "213",
-                    "supplierName": "北京科星易成科技有限公司",
-                    "tranferId": "200",
-                    "tranferName": "首航高科能源技术股份有限公司",
-                    "transferredAmount": 0.00,
-                    "whetherFinancing": "0",
-                    "whetherFlow": "0"
-                },
-                {
-                    "accreditOpinio": "123123",
-                    "accreditStatus": 1,
-                    "applyId": 1603302072676397058,
-                    "applyPerson": "zhangsan3",
-                    "applyTime": "2023-08-03 09:19:49",
-                    "auditId": 1603302337840295937,
-                    "auditPerson": "zhangsan4",
-                    "auditTime": "2023-08-03 09:20:56",
-                    "creditBillAmount": 0.53,
-                    "creditBillCode": "L20230209151602186190024",
-                    "creditBillNo": 40000.00,
-                    "creditBillRatio": 40.00,
-                    "creditBillRemainAmount": 0.53,
-                    "custId": 154,
-                    "custName": "太原市第一建筑工程集团有限公司湖北分公司",
-                    "deepth": 3,
-                    "fatherBillCode": "L20230209151602186190020",
-                    "fatherCreditBillAmount": 3.00,
-                    "fatherTranferName": "丛林铝业科技（山东）有限责任公司",
-                    "id": 1000707,
-                    "paymentDate": "20240201",
-                    "recId": 671,
-                    "supplierEntId": "213",
-                    "supplierName": "北京科星易成科技有限公司",
-                    "tranferId": "200",
-                    "tranferName": "首航高科能源技术股份有限公司",
-                    "transferredAmount": 0.00,
-                    "whetherFinancing": "0",
-                    "whetherFlow": "0"
-                },
-                {
-                    "accreditOpinio": "1",
-                    "accreditStatus": 1,
-                    "applyId": 1603302072676397058,
-                    "applyPerson": "zhangsan3",
-                    "applyTime": "2023-07-10 13:57:22",
-                    "auditId": 1603302337840295937,
-                    "auditPerson": "zhangsan4",
-                    "auditTime": "2023-07-10 13:58:16",
-                    "creditBillAmount": 0.09,
-                    "creditBillCode": "L20230209151602186190023",
-                    "creditBillNo": 40000.00,
-                    "creditBillRatio": 40.00,
-                    "creditBillRemainAmount": 0.09,
-                    "custId": 154,
-                    "custName": "太原市第一建筑工程集团有限公司湖北分公司",
-                    "deepth": 3,
-                    "fatherBillCode": "L20230209151602186190021",
-                    "fatherCreditBillAmount": 0.10,
-                    "fatherTranferName": "丛林铝业科技（山东）有限责任公司",
-                    "id": 1000684,
-                    "paymentDate": "20240201",
-                    "recId": 671,
-                    "supplierEntId": "223",
-                    "supplierName": "北京新橙科技有限公司",
-                    "tranferId": "200",
-                    "tranferName": "首航高科能源技术股份有限公司",
-                    "transferredAmount": 0.00,
-                    "whetherFinancing": "0",
-                    "whetherFlow": "0"
-                },
-                {
-                    "accreditOpinio": "123123",
-                    "accreditStatus": 1,
-                    "applyId": 1623874229693837314,
-                    "applyPerson": "测试五",
-                    "applyTime": "2023-06-27 11:13:35",
-                    "auditId": 1603302337840295937,
-                    "auditPerson": "zhangsan4",
-                    "auditTime": "2023-06-27 11:14:22",
-                    "creditBillAmount": 0.01,
-                    "creditBillCode": "L20230209151602186190022",
-                    "creditBillNo": 40000.00,
-                    "creditBillRatio": 40.00,
-                    "creditBillRemainAmount": 0.01,
-                    "custId": 154,
-                    "custName": "太原市第一建筑工程集团有限公司湖北分公司",
-                    "deepth": 3,
-                    "fatherBillCode": "L20230209151602186190021",
-                    "fatherCreditBillAmount": 0.10,
-                    "fatherTranferName": "丛林铝业科技（山东）有限责任公司",
-                    "id": 1000671,
-                    "paymentDate": "20240201",
-                    "recId": 671,
-                    "supplierEntId": "213",
-                    "supplierName": "北京科星易成科技有限公司",
-                    "tranferId": "200",
-                    "tranferName": "首航高科能源技术股份有限公司",
-                    "transferredAmount": 0.00,
-                    "whetherFinancing": "0",
-                    "whetherFlow": "0"
-                },
-                {
-                    "accreditOpinio": "",
-                    "accreditStatus": 2,
-                    "applyId": 1623874229693837314,
-                    "applyPerson": "测试五",
-                    "applyTime": "2023-06-06 16:50:12",
-                    "auditId": 1623874229693837314,
-                    "auditPerson": "测试五",
-                    "auditTime": "2023-06-06 16:53:37",
-                    "creditBillAmount": 0.01,
-                    "creditBillCode": "L20230403163839515280015",
-                    "creditBillNo": 0.90,
-                    "creditBillRatio": 22.50,
-                    "creditBillRemainAmount": 0.01,
-                    "custId": 154,
-                    "custName": "太原市第一建筑工程集团有限公司湖北分公司",
-                    "deepth": 1,
-                    "fatherBillCode": "L20230403163839515280",
-                    "fatherCreditBillAmount": 0.90,
-                    "fatherTranferName": "太原市第一建筑工程集团有限公司湖北分公司",
-                    "id": 1000576,
-                    "paymentDate": "20240201",
-                    "recId": 697,
-                    "supplierEntId": "213",
-                    "supplierName": "北京科星易成科技有限公司",
-                    "tranferId": "200",
-                    "tranferName": "首航高科能源技术股份有限公司",
-                    "transferredAmount": 0.00,
-                    "whetherFinancing": "0",
-                    "whetherFlow": "0"
-                },
-                {
-                    "accreditOpinio": "",
-                    "accreditStatus": 0,
-                    "applyId": 1623874229693837314,
-                    "applyPerson": "测试五",
-                    "applyTime": "2023-06-05 17:30:52",
-                    "auditId": 1603302337840295937,
-                    "auditPerson": "zhangsan4",
-                    "auditTime": "2023-06-05 17:38:23",
-                    "creditBillAmount": 0.02,
-                    "creditBillCode": "L20230403163839515280014",
-                    "creditBillNo": 0.90,
-                    "creditBillRatio": 22.50,
-                    "creditBillRemainAmount": 0.02,
-                    "custId": 154,
-                    "custName": "太原市第一建筑工程集团有限公司湖北分公司",
-                    "deepth": 1,
-                    "fatherBillCode": "L20230403163839515280",
-                    "fatherCreditBillAmount": 0.90,
-                    "fatherTranferName": "太原市第一建筑工程集团有限公司湖北分公司",
-                    "id": 1000569,
-                    "paymentDate": "20240201",
-                    "recId": 697,
-                    "supplierEntId": "202",
-                    "supplierName": "丛林铝业科技（山东）有限责任公司",
-                    "tranferId": "200",
-                    "tranferName": "首航高科能源技术股份有限公司",
-                    "transferredAmount": 0.00,
-                    "whetherFinancing": "0",
-                    "whetherFlow": "0"
-                },
-                {
-                    "accreditOpinio": "",
-                    "accreditStatus": 0,
-                    "applyId": 1623874229693837314,
-                    "applyPerson": "测试五",
-                    "applyTime": "2023-06-05 14:05:49",
-                    "auditId": 1603302337840295937,
-                    "auditPerson": "zhangsan4",
-                    "auditTime": "2023-06-07 09:44:00",
-                    "creditBillAmount": 0.02,
-                    "creditBillCode": "L20230403163839515280013",
-                    "creditBillNo": 0.90,
-                    "creditBillRatio": 22.50,
-                    "creditBillRemainAmount": 0.02,
-                    "custId": 154,
-                    "custName": "太原市第一建筑工程集团有限公司湖北分公司",
-                    "deepth": 1,
-                    "fatherBillCode": "L20230403163839515280",
-                    "fatherCreditBillAmount": 0.90,
-                    "fatherTranferName": "太原市第一建筑工程集团有限公司湖北分公司",
-                    "id": 1000564,
-                    "paymentDate": "20240201",
-                    "recId": 697,
-                    "supplierEntId": "0",
-                    "supplierName": "丛林铝业科技（山东）有限责任公司",
-                    "tranferId": "200",
-                    "tranferName": "首航高科能源技术股份有限公司",
-                    "transferredAmount": 0.00,
-                    "whetherFinancing": "0",
-                    "whetherFlow": "0"
-                }
-            ],
-            "searchCount": true,
-            "size": 10,
-            "total": 40
+            pages: body.page,
+            records,
+            searchCount: true,
+            size: body.size,
+            total,
         }
     }
     @Post('upload')
-    @UseInterceptors(AnyFilesInterceptor())
-    upload(@Body() fileUploadDTO: FileUploadDTO, @UploadedFiles() files: Array<Express.Multer.File>) {
-        const a = this.matieralsService.upload()
-        console.log('====================================');
-        console.log('====================================');
-        console.log(fileUploadDTO,files);
-        console.log('====================================');
-        console.log('====================================');
-        return {
-            code: 'ok'
-        }
+    // @UseInterceptors(AnyFilesInterceptor())
+    @UseInterceptors(
+        FileInterceptor('file', {
+          storage: diskStorage({
+            destination: join(__dirname,'../../../','static','files'),
+            filename: (req, file, callback) => {
+              const filename =fname= Buffer.from(file.originalname,'latin1').toString('utf8')
+              callback(null, filename);
+            },
+          }),
+        }),
+      )    
+      async upload(@Body() fileUploadDTO: FileUploadDTO, @UploadedFile() file: Array<Express.Multer.File>) {
+        console.log("filse===")
+        console.log(file)
+        fileUploadDTO.fileName = fname
+
+  
+        
+
+
+
+        const res = await this.matieralsService.upload(fileUploadDTO)
+        fname = ''
+        console.log("upload", res)
+        return res
     }
+
 }
