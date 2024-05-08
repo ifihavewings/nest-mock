@@ -1,7 +1,13 @@
-import { Controller, Post } from '@nestjs/common';
-
+import { Controller, Param, Post, Body, UseInterceptors, UploadedFiles } from '@nestjs/common';
+import {MatieralsService} from "./matierals.service"
+import { AnyFilesInterceptor } from '@nestjs/platform-express';
+import {FileUploadDTO} from "./dto/fileUpload.dto"
 @Controller('matierals')
 export class MatieralsController {
+
+    constructor(private matieralsService: MatieralsService) {
+
+    }
 
     @Post('list')
     getList() {
@@ -325,7 +331,14 @@ export class MatieralsController {
         }
     }
     @Post('upload')
-    upload() {
+    @UseInterceptors(AnyFilesInterceptor())
+    upload(@Body() fileUploadDTO: FileUploadDTO, @UploadedFiles() files: Array<Express.Multer.File>) {
+        const a = this.matieralsService.upload()
+        console.log('====================================');
+        console.log('====================================');
+        console.log(fileUploadDTO,files);
+        console.log('====================================');
+        console.log('====================================');
         return {
             code: 'ok'
         }
