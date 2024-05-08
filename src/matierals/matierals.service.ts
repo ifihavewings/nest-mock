@@ -14,6 +14,7 @@ export class MatieralsService {
         data.annexName = file.annexName
         data.fileType = file.fileType
         data.fileName = file.fileName
+        data.filePath = file.filePath
         console.log('filedto=========')
         console.log(file)
         return this.attach.save(data)
@@ -22,9 +23,9 @@ export class MatieralsService {
     async findAll(body: FileListParam) {
         const data = await this.attach.find({
           where: {
-            fileName: Like(`%${body.annexName}%`),
-            fileType: body.fileType,
-            annexName: Like(`%${body.annexName}%`),
+            // fileName: Like(`%${body.annexName}%`),
+            // fileType: body.fileType,
+            // annexName: Like(`%${body.annexName}%`),
             
           },
           skip: (body.page - 1) * body.size,
@@ -32,9 +33,9 @@ export class MatieralsService {
         })
         const total = await this.attach.count({
           where: {
-            fileName: Like(`%${body.annexName}%`),
-            fileType: body.fileType,
-            annexName: Like(`%${body.annexName}%`),
+            // fileName: Like(`%${body.annexName}%`),
+            // fileType: body.fileType,
+            // annexName: Like(`%${body.annexName}%`),
           }
         })
         return {
@@ -42,5 +43,14 @@ export class MatieralsService {
           total
         }
     }
+
+  async findOneById({id}) {
+    const data = this.attach.find({
+      where: {
+        id
+      }
+    })
+    return data
+  }
     
 }

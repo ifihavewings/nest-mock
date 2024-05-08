@@ -11,6 +11,7 @@ import {join} from "path"
 import { writeFile } from 'fs/promises';  
 
 let fname = ''
+let fpath = ''
 @Controller('matierals')
 export class MatieralsController {
 
@@ -52,16 +53,23 @@ export class MatieralsController {
         console.log("filse===")
         console.log(file)
         fileUploadDTO.fileName = fname
-
-  
-        
-
-
+        fileUploadDTO.filePath = `/pmobile/ss/static/files/${fname}`
 
         const res = await this.matieralsService.upload(fileUploadDTO)
         fname = ''
+        fpath = ''
         console.log("upload", res)
         return res
     }
+
+    @Post('detail')
+    async detail(@Body() body) {
+
+      const data = await this.matieralsService.findOneById(body)
+   
+      return data[0]
+    }
+
+
 
 }
