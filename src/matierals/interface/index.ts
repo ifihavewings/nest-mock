@@ -9,3 +9,10 @@ export interface FileListParam {
     fileStatus?:string
 
 }
+
+export interface TraderListParam{
+    page: number,
+    size: number,
+    tradeName?: string
+    businessCode?: string
+}
