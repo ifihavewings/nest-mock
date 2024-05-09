@@ -78,6 +78,13 @@ export class MatieralsController {
       const data = await this.matieralsService.addTrader(body)
       return data
     }
+    @Post("trade/update")
+    async updateTrader(@Body() body) {
+
+      const data = await this.matieralsService.updateTrader(body)
+      return data
+    }
+    
     @Post("trade/list")
     async getTradeList(@Body() body) {
       const data = await this.matieralsService.getTradeList(body)

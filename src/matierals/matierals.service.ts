@@ -78,6 +78,27 @@ export class MatieralsService {
     const data = await this.tradePartnertrader.save(trader)
     return data
   }
+  /**
+   * 新增交易对手
+   * @param body 
+   */
+  async updateTrader(body) {
+    const trader = new TradePartner()
+    trader.id = body.id
+    trader.agencyName = body.agencyName
+    trader.agencyCode = body.agencyCode
+    trader.societyCreditCode = body.societyCreditCode
+    trader.IsTicketPlatform = body.IsTicketPlatform
+    trader.channelName = body.channelName
+    trader.channelCode = body.channelCode
+    trader.billType = body.billType
+    trader.bankOpenName = body.bankOpenName
+    trader.bankOpenCode = body.bankOpenCode
+    trader.billAccount = body.billAccount
+    
+    const data = await this.tradePartnertrader.update(trader.id,trader)
+    return data
+  }
 
   /**
    * 交易对手列表
