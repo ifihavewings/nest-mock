@@ -28,7 +28,7 @@ export class MatieralsService {
   async findAll(body: FileListParam) {
     const data = await this.attach.find({
       where: {
-        fileName: Like(`%${body.annexName}%`),
+        batchNumber: Like(`%${body.batchNumber}%`),
         // fileType: body.fileType,
         annexName: Like(`%${body.annexName}%`),
 
@@ -38,7 +38,7 @@ export class MatieralsService {
     })
     const total = await this.attach.count({
       where: {
-        fileName: Like(`%${body.annexName}%`),
+        batchNumber: Like(`%${body.batchNumber}%`),
         // fileType: body.fileType,
         annexName: Like(`%${body.annexName}%`),
       }
@@ -76,14 +76,36 @@ export class MatieralsService {
     trader.billAccount = body.billAccount
     
     const data = await this.tradePartnertrader.save(trader)
+    return data
   }
 
   /**
    * 交易对手列表
    * @param body 
    */
+  
   async getTradeList(body: TraderListParam) {
+    const data = await this.tradePartnertrader.find({
+      // where: {
+      //   tradeName: Like(`%${body.tradeName}%`),
+      //   // fileType: body.fileType,
+      //   businessCode: Like(`%${body.businessCode}%`),
 
+      // },
+      skip: (body.page - 1) * body.size,
+      take: body.size
+    })
+    const total = await this.tradePartnertrader.count({
+      // where: {
+      //   tradeName: Like(`%${body.tradeName}%`),
+      //   // fileType: body.fileType,
+      //   businessCode: Like(`%${body.businessCode}%`),
+      // }
+    })
+    return {
+      records: data,
+      total
+    }
   }
 
 }
