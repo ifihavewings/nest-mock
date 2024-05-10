@@ -1,18 +1,17 @@
-export interface FileListParam {
+interface Pageable {
     page: number,
     size: number,
-    fileType?:string,
+}
+export interface FileListParam extends Pageable {
+    fileType?: string,
     batchNumber?: string,
     annexName?: string,
     stateDate?: string,
     endDate?: string,
-    fileStatus?:string
-
+    fileStatus?: string
 }
 
-export interface TraderListParam{
-    page: number,
-    size: number,
+export interface TraderListParam extends Pageable {
     tradeName?: string
     businessCode?: string
 }

@@ -1,5 +1,5 @@
 import "reflect-metadata"
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DogController } from './dog/dog.controller';
@@ -9,6 +9,7 @@ import { SysModule } from './sys/sys.module';
 import { MatieralsModule } from './matierals/matierals.module';
 import {MySQLModule} from "./mysql/mysql.module"
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { LoggerMiddleware } from "./middlewares/LoggerMiddleware";
 import {MYSQL} from "../confs"
 // MySQLModule.forRoot(MYSQL),
 @Module({
@@ -31,4 +32,8 @@ import {MYSQL} from "../confs"
   controllers: [AppController, DogController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer:MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes("matierals")
+  }
+}
