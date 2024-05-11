@@ -43,7 +43,7 @@ export class Attach {
     })
     createTime: Date
     @Column({
-        name: 'update_by'
+        name: 'update_by',
     })
     updateBy: string
     @Column({

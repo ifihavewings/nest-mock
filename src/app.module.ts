@@ -10,6 +10,8 @@ import { MatieralsModule } from './matierals/matierals.module';
 import {MySQLModule} from "./mysql/mysql.module"
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { LoggerMiddleware } from "./middlewares/LoggerMiddleware";
+import { APP_INTERCEPTOR } from '@nestjs/core'; 
+import { ResponseInterceptor } from "./interceptors";
 import {MYSQL} from "../confs"
 // MySQLModule.forRoot(MYSQL),
 @Module({
@@ -30,7 +32,13 @@ import {MYSQL} from "../confs"
     autoLoadEntities: true, //如果为true,将自动加载实体 forFeature()方法注册的每个实体都将自动添加到配置对象的实体数组中
 })],
   controllers: [AppController, DogController],
-  providers: [AppService],
+  providers: [
+    AppService, 
+    {  
+      provide: APP_INTERCEPTOR,  
+      useClass: ResponseInterceptor, // 将拦截器注册为全局拦截器  
+    },  
+  ],
 })
 export class AppModule {
   configure(consumer:MiddlewareConsumer) {
