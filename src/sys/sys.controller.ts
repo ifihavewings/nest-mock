@@ -7,11 +7,7 @@ export class SysController {
     getDictList() {
         return {
 
-            aaa: [
-                { 0: '哈哈0' },
-                { 1: '哈哈1' },
-                { 2: '哈哈2' },
-            ]
+            
         }
     }
 };

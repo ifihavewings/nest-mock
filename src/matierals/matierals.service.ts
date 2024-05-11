@@ -27,21 +27,24 @@ export class MatieralsService {
 
   async findAll(body: FileListParam) {
     const data = await this.attach.find({
-      where: {
-        batchNumber: Like(`%${body.batchNumber}%`),
-        // fileType: body.fileType,
-        annexName: Like(`%${body.annexName}%`),
+      // where: {
+      //   batchNumber: Like(`%${body.batchNumber}%`),
+      //   // fileType: body.fileType,
+      //   annexName: Like(`%${body.annexName}%`),
 
+      // },
+      order: {
+        createTime: 'DESC',
       },
       skip: (body.page - 1) * body.size,
       take: body.size
     })
     const total = await this.attach.count({
-      where: {
-        batchNumber: Like(`%${body.batchNumber}%`),
-        // fileType: body.fileType,
-        annexName: Like(`%${body.annexName}%`),
-      }
+      // where: {
+      //   batchNumber: Like(`%${body.batchNumber}%`),
+      //   // fileType: body.fileType,
+      //   annexName: Like(`%${body.annexName}%`),
+      // }
     })
     return {
       data,
@@ -64,6 +67,11 @@ export class MatieralsService {
    */
   async addTrader(body) {
     const trader = new TradePartner()
+    console.log("body??????????")
+    console.log(body)
+    // businessPart
+    trader.businessCode = body.businessCode
+    trader.businessPart = body.businessPart
     trader.agencyName = body.agencyName
     trader.agencyCode = body.agencyCode
     trader.societyCreditCode = body.societyCreditCode
@@ -74,17 +82,22 @@ export class MatieralsService {
     trader.bankOpenName = body.bankOpenName
     trader.bankOpenCode = body.bankOpenCode
     trader.billAccount = body.billAccount
-    
+    console.log(trader)
     const data = await this.tradePartnertrader.save(trader)
     return data
   }
   /**
-   * 新增交易对手
+   * 更新交易对手
    * @param body 
    */
   async updateTrader(body) {
     const trader = new TradePartner()
     trader.id = body.id
+    console.log("body??????????")
+    console.log(body)
+    // businessPart
+    trader.businessCode = body.businessCode
+    trader.businessPart = body.businessPart
     trader.agencyName = body.agencyName
     trader.agencyCode = body.agencyCode
     trader.societyCreditCode = body.societyCreditCode
@@ -113,6 +126,9 @@ export class MatieralsService {
       //   businessCode: Like(`%${body.businessCode}%`),
 
       // },
+      order: {
+        createTime: 'DESC',
+      },
       skip: (body.page - 1) * body.size,
       take: body.size
     })

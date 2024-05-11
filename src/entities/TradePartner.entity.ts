@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn, Generated} from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, Generated, BeforeInsert, BeforeUpdate} from "typeorm";
 @Entity("scb_trade_partner")
 export class TradePartner {
     // bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -136,4 +136,15 @@ export class TradePartner {
         name: 'updater'
     })
     updater:string
+
+    @BeforeInsert()
+    updateCreateTime() {
+        this.createTime = new Date()
+        this.deleteFlag = '0'
+    }
+
+    @BeforeUpdate()
+    updateUpdateTime() {
+        this.updateTime = new Date()
+    }
 }
