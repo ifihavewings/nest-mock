@@ -1,13 +1,11 @@
 import { Module } from '@nestjs/common';
 import { SysController } from './sys.controller';
 import { SysService } from './sys.service';
-import {ResponseInterceptor} from '../interceptors'
-import { APP_INTERCEPTOR } from '@nestjs/core';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { InstitutionEntity } from 'src/entities/InstitutionEntity';
 @Module({
+  imports: [TypeOrmModule.forFeature([InstitutionEntity])],
   controllers: [SysController],
-  providers: [SysService, {
-    provide: APP_INTERCEPTOR,
-    useClass: ResponseInterceptor,
-  },]
+  providers: [SysService]
 })
 export class SysModule {}
