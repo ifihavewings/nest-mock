@@ -3,8 +3,9 @@ import { SysController } from './sys.controller';
 import { SysService } from './sys.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { InstitutionEntity } from 'src/entities/InstitutionEntity';
+import { BusinessChannel } from 'src/entities/BusinessChannel';
 @Module({
-  imports: [TypeOrmModule.forFeature([InstitutionEntity])],
+  imports: [TypeOrmModule.forFeature([InstitutionEntity, BusinessChannel])],
   controllers: [SysController],
   providers: [SysService]
 })
