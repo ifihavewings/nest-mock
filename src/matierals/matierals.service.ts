@@ -70,6 +70,9 @@ export class MatieralsService {
     console.log("body??????????")
     console.log(body)
     // businessPart
+    trader.tradeName = body.tradeName
+    trader.bankAccount = body.bankAccount
+    trader.bankAccountName = body.bankAccountName
     trader.businessCode = body.businessCode
     trader.businessPart = body.businessPart
     trader.agencyName = body.agencyName
@@ -87,6 +90,15 @@ export class MatieralsService {
     return data
   }
   /**
+   * 新增交易对手
+   * @param body 
+   */
+  async delTrader(body) {
+    const id = body.id
+    const data = await this.tradePartnertrader.delete(id)
+    return data
+  }
+  /**
    * 更新交易对手
    * @param body 
    */
@@ -96,6 +108,9 @@ export class MatieralsService {
     console.log("body??????????")
     console.log(body)
     // businessPart
+    trader.tradeName = body.tradeName
+    trader.bankAccount = body.bankAccount
+    trader.bankAccountName = body.bankAccountName
     trader.businessCode = body.businessCode
     trader.businessPart = body.businessPart
     trader.agencyName = body.agencyName
@@ -120,12 +135,12 @@ export class MatieralsService {
   
   async getTradeList(body: TraderListParam) {
     const data = await this.tradePartnertrader.find({
-      // where: {
-      //   tradeName: Like(`%${body.tradeName}%`),
-      //   // fileType: body.fileType,
-      //   businessCode: Like(`%${body.businessCode}%`),
-
-      // },
+      where: {
+        // tradeName: Like(`%${body.tradeName}%`),
+        // // fileType: body.fileType,
+        // businessCode: Like(`%${body.businessCode}%`),
+        deleteFlag: '0'
+      },
       order: {
         createTime: 'DESC',
       },

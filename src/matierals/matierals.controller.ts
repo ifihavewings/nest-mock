@@ -78,6 +78,12 @@ export class MatieralsController {
       const data = await this.matieralsService.addTrader(body)
       return data
     }
+    @Post("trader/delete")
+    async delTrader(@Body() body) {
+
+      const data = await this.matieralsService.delTrader(body)
+      return data
+    }
     @Post("trader/update")
     async updateTrader(@Body() body) {
 
