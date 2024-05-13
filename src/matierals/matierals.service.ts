@@ -95,6 +95,15 @@ export class MatieralsService {
    */
   async delTrader(body) {
     const id = body.id
+    const data = await this.tradePartnertrader.update(id, {deleteFlag: '1'})
+    return data
+  }
+  /**
+   * 新增交易对手
+   * @param body 
+   */
+  async delPermanentTrader(body) {
+    const id = body.id
     const data = await this.tradePartnertrader.delete(id)
     return data
   }
@@ -148,11 +157,12 @@ export class MatieralsService {
       take: body.size
     })
     const total = await this.tradePartnertrader.count({
-      // where: {
-      //   tradeName: Like(`%${body.tradeName}%`),
-      //   // fileType: body.fileType,
-      //   businessCode: Like(`%${body.businessCode}%`),
-      // }
+      where: {
+        // tradeName: Like(`%${body.tradeName}%`),
+        // // fileType: body.fileType,
+        // businessCode: Like(`%${body.businessCode}%`),
+        deleteFlag: '0'
+      }
     })
     return {
       records: data,
