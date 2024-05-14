@@ -12,4 +12,21 @@ export class WithdrawService {
         const res = await this.withdraw.save(body)
         return res
     }
+
+    async list(body) {
+        const res = await this.withdraw.find({
+              skip: (body.page - 1) * body.size,
+              take: body.size,
+        })
+        const total = await this.withdraw.count({
+            // where: {
+            //   deleteFlag: '0'
+            // }
+          })
+        return {
+            records: res,
+            total
+        };
+
+    }
 }

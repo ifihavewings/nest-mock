@@ -10,4 +10,9 @@ export class WithdrawController {
     add(@Body() body) {
         return this.withdrawService.add(body)
     }
+
+    @Post('list')
+    list(@Body() body) {
+        return this.withdrawService.list(body)
+    }
 }
