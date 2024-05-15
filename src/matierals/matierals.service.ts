@@ -45,12 +45,12 @@ export class MatieralsService {
   
   async uploadTest(o) {
     console.log('upolad==================')
-    console.log(o.file.originalname)
+    console.log(o)
     const data = {
       fileType: o.body.fileType,
       annexName: o.body.annexName,
       fileName: o.file.originalname,
-      filePath: `/pmobile/ss/static/files/${iconv.encode(o.file.originalname, 'utf8')}`
+      filePath: `/pmobile/ss/static/files/${iconv.encode(o.file.filename, 'utf8')}`
     }
  
 
