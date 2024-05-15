@@ -5,6 +5,7 @@ import { Attach } from 'src/entities/Attach.entity';
 import { TradePartner } from "src/entities/TradePartner.entity"
 import { FileUploadDTO } from './dto/fileUpload.dto';
 import { FileListParam, TraderListParam } from "./interface"
+import * as iconv from 'iconv-lite';
 @Injectable()
 export class MatieralsService {
   constructor(
@@ -23,6 +24,38 @@ export class MatieralsService {
     console.log('filedto=========')
     console.log(file)
     return this.attach.save(data)
+  }
+
+  // upolad================== {
+  //   body: [Object: null prototype] {
+  //     annexName: 'XXXXXX_bbb_20240515100532',
+  //     fileType: 'bbb'
+  //   },
+  //   file: {
+  //     fieldname: 'file',
+  //     originalname: 'html2canvas.pdf',
+  //     encoding: '7bit',
+  //     mimetype: 'application/pdf',
+  //     destination: 'D:\\nest-mock\\static\\files',
+  //     filename: 'b511c3ea5cff10b223f31e8bb810cc6421html2canvas.pdf',
+  //     path: 'D:\\nest-mock\\static\\files\\b511c3ea5cff10b223f31e8bb810cc6421html2canvas.pdf',
+  //     size: 216537
+  //   }
+  // }
+  
+  async uploadTest(o) {
+    console.log('upolad==================')
+    console.log(o.file.originalname)
+    const data = {
+      fileType: o.body.fileType,
+      annexName: o.body.annexName,
+      fileName: o.file.originalname,
+      filePath: `/pmobile/ss/static/files/${iconv.encode(o.file.originalname, 'utf8')}`
+    }
+ 
+
+    const res =await this.attach.save(data)
+    return res;
   }
 
   async findAll(body: FileListParam) {
