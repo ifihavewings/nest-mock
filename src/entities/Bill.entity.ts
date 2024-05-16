@@ -72,15 +72,15 @@ export class Bill {
 
     //  char(4) DEFAULT NULL COMMENT '不得转让标记EM01不得转让EM00可再转让',
     @Column({
-        name: 'un_exchange_flag'
+        name: 'un_transferable_flag'
     })
-    unExchangeFlag: string
+    unTransferableFlag: string
 
     //  varchar(10) DEFAULT NULL COMMENT '分包流转标记0不是1是',
     @Column({
-        name: 'sub_transfer_flag'
+        name: 'subcontract_flag'
     })
-    subTransferFlag: string
+    subcontractFlag: string
 
     //  varchar(4) DEFAULT NULL COMMENT '贸易背景登记状态',
     @Column({
@@ -120,63 +120,63 @@ export class Bill {
 
     //  datetime DEFAULT NULL COMMENT '出票日期',
     @Column({
-        name: 'draw_date'
+        name: 'bill_open_time'
     })
-    drawDate: Date
+    billOpenTime: Date
 
     //  datetime DEFAULT NULL COMMENT '到期日期，出票日期不超6个月',
     @Column({
-        name: 'expire_date'
+        name: 'bill_expire_time'
     })
-    expireDate: Date
+    billExpireTime: Date
 
     //  varchar(128) DEFAULT NULL COMMENT '出票人名称',
     @Column({
-        name: 'draw_ent_name'
+        name: 'drawer_name'
     })
-    drawEntName: string
+    drawerName: string
 
     //  bigint(20) DEFAULT NULL COMMENT '出票人id',
     @Column({
-        name: 'draw_ent_id'
+        name: 'drawer_ent_id'
     })
-    drawEntId: number
+    drawerEntId: number
 
     //  varchar(30) DEFAULT NULL COMMENT '出票人统一社会信用代码',
     @Column({
-        name: 'draw_ent_code'
+        name: 'drawer_ent_code'
     })
-    drawEntCode: string
+    drawerEntCode: string
 
     //  varchar(128) DEFAULT NULL COMMENT '出票人银行账户名称',
     @Column({
-        name: 'draw_account_name'
+        name: 'drawer_account_name'
     })
-    drawAccountName: string
+    drawerAccountName: string
 
     //  varchar(100) DEFAULT NULL COMMENT '出票人银行账号',
     @Column({
-        name: 'draw_account_no'
+        name: 'drawer_account_no'
     })
-    drawAccountNo: string
+    drawerAccountNo: string
 
     //  varchar(128) DEFAULT NULL COMMENT '出票人银行账户开户行机构参与者名称',
     @Column({
-        name: 'draw_bank_name'
+        name: 'drawer_bank_name'
     })
-    drawBankName: string
+    drawerBankName: string
 
     //  varchar(50) DEFAULT NULL COMMENT '出票人渠道号',
     @Column({
-        name: 'draw_channel_code'
+        name: 'drawer_channel_code'
     })
-    drawChannelCode: string
+    drawerChannelCode: string
 
     //  varchar(128) DEFAULT NULL COMMENT '出票人渠道名称',
     @Column({
-        name: 'draw_channel_name'
+        name: 'drawer_channel_name'
     })
-    drawChannelName: string
+    drawerChannelName: string
 
     //  varchar(4) DEFAULT NULL COMMENT '收款人是否为供票平台企业',
     @Column({
@@ -186,9 +186,9 @@ export class Bill {
 
     //  varchar(128) DEFAULT NULL COMMENT '收款人名称',
     @Column({
-        name: 'payee_ent_name'
+        name: 'payee_name'
     })
-    payeeEntName: string
+    payeeName: string
 
     //  bigint(20) DEFAULT NULL COMMENT '收款人id',
     @Column({
