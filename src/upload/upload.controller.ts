@@ -46,10 +46,10 @@ export class UploadController {
       ],
       {
         storage: diskStorage({
-        // destination: (req, file, cb) => {
-        //   cb(null, join(__dirname, '../../public/files')); // 指定文件存储的目录
-        // },
-        destination: join(__dirname, '../../../', 'static', 'files'),
+          // destination: (req, file, cb) => {
+          //   cb(null, join(__dirname, '../../public/files')); // 指定文件存储的目录
+          // },
+          destination: join(__dirname, '../../../', 'static', 'files'),
           filename: (req, file, cb) => {
             // 使用原始文件名（保留扩展名）并添加时间戳前缀
             const uniqueSuffix =
@@ -64,6 +64,7 @@ export class UploadController {
     @UploadedFiles() files: Array<Express.Multer.File>,
     @Body() body,
   ) {
+    // 拿到 文件和 body 去service 处理
     console.log(files, body);
     return 'ok2';
   }
