@@ -46,9 +46,10 @@ export class UploadController {
       ],
       {
         storage: diskStorage({
-          destination: (req, file, cb) => {
-            cb(null, join(__dirname, '../../public/files')); // 指定文件存储的目录
-          },
+        // destination: (req, file, cb) => {
+        //   cb(null, join(__dirname, '../../public/files')); // 指定文件存储的目录
+        // },
+        destination: join(__dirname, '../../../', 'static', 'files'),
           filename: (req, file, cb) => {
             // 使用原始文件名（保留扩展名）并添加时间戳前缀
             const uniqueSuffix =
