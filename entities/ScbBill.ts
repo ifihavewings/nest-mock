@@ -1,13 +1,20 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn  } from "typeorm";
+import { v4 as uuidv4 } from 'uuid';
 
 @Entity("scb_bill", { schema: "scb_bill" })
+
 export class ScbBill {
+
+  constructor() {
+    console.log(uuidv4())
+  }
+
   @PrimaryGeneratedColumn({ type: "bigint", name: "id" })
   id: string;
 
   @Column("varchar", {
     name: "bill_package_num",
-    nullable: true,
+    // nullable: true,
     comment: "票据(包)号",
     length: 50,
   })
@@ -15,7 +22,7 @@ export class ScbBill {
 
   @Column("varchar", {
     name: "subinterval_num",
-    nullable: true,
+    // nullable: true,
     comment: "子区间号",
     length: 100,
   })
@@ -23,7 +30,7 @@ export class ScbBill {
 
   @Column("varchar", {
     name: "init_subinterval_num",
-    nullable: true,
+    // nullable: true,
     comment: "初始子区间",
     length: 100,
   })
@@ -458,4 +465,26 @@ export class ScbBill {
     default: () => "'0'",
   })
   revision: number;
+
+  @BeforeInsert()
+  updateCreateTime() {
+    console.log('--------------------------------------???')
+    this.createTime = new Date()
+    this.deleteFlag = '0'
+    this.billPackageNum = uuidv4();
+    this.subintervalNum = '10000'
+    this.rootBillId = uuidv4()
+    this.lockFlag = '0'
+    this.freezeStatus = '0'
+    this.isSplitFlag = '0'
+    this.billState = 'CS01'
+    this.billFlowFlag = 'TF0101'
+    this.billOpenTime = new Date()
+    this.billExpireTime = new Date('2024-07-30')
+
+  }
+  @BeforeUpdate()
+  updateUpdateTime() {
+    this.updateTime = new Date()
+  }
 }
