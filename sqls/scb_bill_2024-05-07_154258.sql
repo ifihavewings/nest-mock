@@ -336,7 +336,7 @@ CREATE TABLE `scb_draw_apply` (
   `approval_time` datetime DEFAULT NULL COMMENT '审批时间',
   `apply_date` datetime DEFAULT NULL COMMENT '申请时间',
   `apply_by` varchar(255) DEFAULT NULL COMMENT '申请人id',
-  `apply_name` bigint(20) DEFAULT NULL COMMENT '申请人名称',
+  `applicant` bigint(20) DEFAULT NULL COMMENT '申请人名称',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -593,7 +593,7 @@ CREATE TABLE `scb_hint_accept_apply` (
   `sub_transfer_flag` char(4) DEFAULT NULL COMMENT '分包流转标记0否1是',
   `apply_date` datetime DEFAULT NULL COMMENT '申请时间',
   `apply_by` varchar(255) DEFAULT NULL COMMENT '申请人id',
-  `apply_name` bigint(20) DEFAULT NULL COMMENT '申请人名称',
+  `applicant` bigint(20) DEFAULT NULL COMMENT '申请人名称',
   `send_date` datetime DEFAULT NULL COMMENT '发送日期',
   `draw_date` datetime DEFAULT NULL COMMENT '出票日期',
   `expire_date` datetime DEFAULT NULL COMMENT '到期日期',
@@ -661,7 +661,7 @@ CREATE TABLE `scb_hint_accept_sign` (
   `approval_time` datetime DEFAULT NULL COMMENT '审批时间',
   `apply_date` datetime DEFAULT NULL COMMENT '申请时间',
   `apply_by` varchar(255) DEFAULT NULL COMMENT '申请人id',
-  `apply_name` bigint(20) DEFAULT NULL COMMENT '申请人名称',
+  `applicant` bigint(20) DEFAULT NULL COMMENT '申请人名称',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -699,7 +699,7 @@ CREATE TABLE `scb_hint_collect_apply` (
   `approval_time` datetime DEFAULT NULL COMMENT '审批时间',
   `apply_date` datetime DEFAULT NULL COMMENT '申请时间',
   `apply_by` varchar(255) DEFAULT NULL COMMENT '申请人id',
-  `apply_name` bigint(20) DEFAULT NULL COMMENT '申请人名称',
+  `applicant` bigint(20) DEFAULT NULL COMMENT '申请人名称',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -745,7 +745,7 @@ CREATE TABLE `scb_hint_collect_sign` (
   `approval_time` datetime DEFAULT NULL COMMENT '审批时间',
   `apply_date` datetime DEFAULT NULL COMMENT '申请时间',
   `apply_by` varchar(255) DEFAULT NULL COMMENT '申请人id',
-  `apply_name` bigint(20) DEFAULT NULL COMMENT '申请人名称',
+  `applicant` bigint(20) DEFAULT NULL COMMENT '申请人名称',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1019,8 +1019,8 @@ CREATE TABLE `scb_withdraw_bill` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `delete_flag` char(1) DEFAULT NULL COMMENT '删除标识 0删除 1正常',
   `remark` varchar(128) DEFAULT NULL COMMENT '备注',
-  `approve_peo_id` bigint(20) DEFAULT NULL COMMENT '审批人id',
-  `approve_peo_name` varchar(128) DEFAULT NULL COMMENT '审批人姓名',
+  `approval_by` bigint(20) DEFAULT NULL COMMENT '审批人id',
+  `approver` varchar(128) DEFAULT NULL COMMENT '审批人姓名',
   `send_date` datetime DEFAULT NULL COMMENT '发送日期',
   `creator` varchar(30) DEFAULT NULL COMMENT '创建人',
   `updater` varchar(30) DEFAULT NULL COMMENT '修改人',

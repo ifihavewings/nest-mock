@@ -15,4 +15,18 @@ export class BillController {
     list(@Body() body) {
         return this.billService.list(body)
     }
+    @Post('detail')
+    detail(@Body() body) {
+        return this.billService.getDetail(body)
+    }
+
+
+    /**
+     * 冻结解冻
+     **/
+
+    @Post('freeze/add')
+    freeze(@Body() body) {
+        return this.billService.freeze(body)
+    }
 }

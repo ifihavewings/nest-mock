@@ -182,14 +182,14 @@ export class ScbWithdrawBill {
   remark: string | null;
 
   @Column("bigint", {
-    name: "approve_peo_id",
+    name: "approval_by",
     nullable: true,
     comment: "审批人id",
   })
   approvePeoId: string | null;
 
   @Column("varchar", {
-    name: "approve_peo_name",
+    name: "approver",
     nullable: true,
     comment: "审批人姓名",
     length: 128,
@@ -223,7 +223,7 @@ export class ScbWithdrawBill {
   applyBy: string | null;
 
   @Column("varchar", {
-    name: "apply_name",
+    name: "applicant",
     nullable: true,
     comment: "申请人名称",
     length: 50,

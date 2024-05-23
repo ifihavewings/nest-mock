@@ -155,6 +155,7 @@ export class ScbBill {
   })
   billFlowFlag: string | null;
 
+
   @Column("datetime", {
     name: "bill_open_time",
     nullable: true,

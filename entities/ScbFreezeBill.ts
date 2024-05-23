@@ -47,18 +47,18 @@ export class ScbFreezeBill {
   subcontractFlag: string | null;
 
   @Column("datetime", {
-    name: "draw_date",
+    name: "bill_open_time",
     nullable: true,
     comment: "出票日期",
   })
-  drawDate: Date | null;
+  billOpenTime: Date | null;
 
   @Column("datetime", {
-    name: "expire_date",
+    name: "bill_expire_time",
     nullable: true,
     comment: "到期日期",
   })
-  expireDate: Date | null;
+  billExpireTime: Date | null;
 
   @Column("bigint", {
     name: "drawer_ent_id",
@@ -114,13 +114,13 @@ export class ScbFreezeBill {
   intervalNumber: string | null;
 
   @Column("decimal", {
-    name: "initial_bill_amount",
+    name: "bill_package_init_amount",
     nullable: true,
     comment: "初始票据金额",
     precision: 16,
     scale: 2,
   })
-  initialBillAmount: string | null;
+  billPackageInitAmount: string | null;
 
   @Column("decimal", {
     name: "unfreeze_amount",
@@ -344,12 +344,12 @@ export class ScbFreezeBill {
   applyBy: string | null;
 
   @Column("varchar", {
-    name: "apply_name",
+    name: "applicant",
     nullable: true,
     comment: "申请人名称",
     length: 50,
   })
-  applyName: string | null;
+  applicant: string | null;
 
   @Column("datetime", {
     name: "apply_date",

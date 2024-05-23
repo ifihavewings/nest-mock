@@ -1,27 +1,30 @@
 import { Injectable } from '@nestjs/common';
-import {Withdraw} from "src/entities/Withdraw.entiry"
+import { ScbWithdrawBill } from 'entities/ScbWithdrawBill';
 import { InjectRepository } from "@nestjs/typeorm"
-import { Repository, Like } from "typeorm"
+import { Repository } from "typeorm"
 
 @Injectable()
 export class WithdrawService {
-    constructor( @InjectRepository(Withdraw) private readonly withdraw: Repository<Withdraw>,) {
+    constructor( @InjectRepository(ScbWithdrawBill) private readonly scbWithdrawBill: Repository<ScbWithdrawBill>,) {
 
     }
     async add(body) {
-        const res = await this.withdraw.save(body)
+        const res = await this.scbWithdrawBill.save(body.scbWithdrawBillDTOList)
         return res
     }
 
     async list(body) {
-        const res = await this.withdraw.find({
+        const res = await this.scbWithdrawBill.find({
               skip: (body.page - 1) * body.size,
               take: body.size,
+              where: {
+                deleteFlag: '0'
+              }
         })
-        const total = await this.withdraw.count({
-            // where: {
-            //   deleteFlag: '0'
-            // }
+        const total = await this.scbWithdrawBill.count({
+            where: {
+              deleteFlag: '0'
+            }
           })
         return {
             records: res,

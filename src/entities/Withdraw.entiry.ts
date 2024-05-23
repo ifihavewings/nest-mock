@@ -95,7 +95,7 @@ export class Withdraw {
 
     // varchar(2) DEFAULT NULL COMMENT '审批状态00:未提交 01:待复核 02:已通过 03:已驳回',
     @Column({
-        name: 'approve_status'
+        name: 'approval_status'
     })
     approveStatus: string
 
@@ -155,13 +155,13 @@ export class Withdraw {
 
     // bigint(20) DEFAULT NULL COMMENT '审批人id',
     @Column({
-        name: 'approve_peo_id'
+        name: 'approval_by'
     })
     approvePeoId: number
 
     // varchar(128) DEFAULT NULL COMMENT '审批人姓名',
     @Column({
-        name: 'approve_peo_name'
+        name: 'approver'
     })
     approvePeoName: string
 
