@@ -72,7 +72,7 @@ export class ScbTransactionRecord {
     name: "ret_msg",
     nullable: true,
     comment: "响应信息",
-    length: 32,
+    length: 255,
   })
   retMsg: string | null;
 
