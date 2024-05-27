@@ -11,8 +11,21 @@ export class WithdrawController {
         return this.withdrawService.add(body)
     }
 
+    @Post('del')
+    del(@Body() body) {
+        return this.withdrawService.del(body)
+    }
+
     @Post('list')
     list(@Body() body) {
         return this.withdrawService.list(body)
+    }
+    @Post('recheck')
+    recheck(@Body() body) {
+        return this.withdrawService.recheck(body)
+    }
+    @Post('withdraw')
+    withdraw(@Body() body) {
+        return this.withdrawService.withdraw(body)
     }
 }

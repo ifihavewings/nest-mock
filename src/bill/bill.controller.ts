@@ -6,6 +6,13 @@ export class BillController {
     constructor(private billService: BillService) {
 
     }
+    
+    @Post('test')
+    test(@Body() body) {
+        console.log(body)
+        return 'ok'
+    }
+
     @Post('add')
     add(@Body() body) {
         console.log(v4())

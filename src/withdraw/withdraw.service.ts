@@ -32,4 +32,20 @@ export class WithdrawService {
         };
 
     }
+
+    async del(body) {
+      const res = await this.scbWithdrawBill.update(body.id, {deleteFlag: '1'})
+      return res;
+    }
+
+    async recheck(body) {
+      const res = await this.scbWithdrawBill.update(body.ids,{approvalStatus: '01'})
+      return res;
+    }
+    async withdraw(body) {
+      const res = await this.scbWithdrawBill.update(body.ids,{approvalStatus: '00'})
+      return res;
+    }
+
+
 }
