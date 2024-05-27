@@ -16,6 +16,7 @@ import { MYSQL } from "../confs"
 import { WithdrawModule } from './withdraw/withdraw.module';
 import { BillModule } from './bill/bill.module';
 import { UploadModule } from "./upload/upload.module";
+import { BaseModule } from './base/base.module';
 // MySQLModule.forRoot(MYSQL),
 @Module({
   imports: [CatsModule, FishModule, SysModule, MatieralsModule,
@@ -46,7 +47,7 @@ import { UploadModule } from "./upload/upload.module";
       // 果果不使用 autoLoadEntities: true, 应该使用下面一行
       // entities: [BusinessChannel], // 确保包含你的实体 
     }),
-    WithdrawModule, BillModule, UploadModule],
+    WithdrawModule, BillModule, UploadModule, BaseModule],
   controllers: [AppController, DogController],
   providers: [
     AppService,
