@@ -2,7 +2,7 @@ import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
 
 @Index("serail_no_key", ["serialNo"], { unique: true })
 @Index("cust_acc_key", ["custId", "creditCustId", "accNo"], { unique: true })
-@Entity("cust_account_record", { schema: "dc_scm_payment" })
+@Entity("cust_account_record", { schema: "dc_scm_payment_test" })
 export class CustAccountRecord {
   @PrimaryGeneratedColumn({ type: "bigint", name: "id", comment: "主键id" })
   id: string;

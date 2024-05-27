@@ -1,7 +1,7 @@
 import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
 
 @Index("user_id", ["userId"], {})
-@Entity("jdbcdev", { schema: "dc_scm_payment" })
+@Entity("jdbcdev", { schema: "dc_scm_payment_test" })
 export class Jdbcdev {
   @PrimaryGeneratedColumn({ type: "bigint", name: "account_id" })
   accountId: string;

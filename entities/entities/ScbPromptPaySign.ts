@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity("scb_prompt_pay_sign", { schema: "dc_scm_payment" })
+@Entity("scb_prompt_pay_sign", { schema: "dc_scm_payment_test" })
 export class ScbPromptPaySign {
   @PrimaryGeneratedColumn({ type: "bigint", name: "id", comment: "主键ID" })
   id: string;

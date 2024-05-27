@@ -1,7 +1,7 @@
 import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
 
 @Index("fnc_bus_no", ["fncBusNo"], {})
-@Entity("fnc_order_record", { schema: "dc_scm_payment" })
+@Entity("fnc_order_record", { schema: "dc_scm_payment_test" })
 export class FncOrderRecord {
   @PrimaryGeneratedColumn({ type: "bigint", name: "id", comment: "主键id" })
   id: string;

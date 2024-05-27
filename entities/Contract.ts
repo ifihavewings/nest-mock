@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity("contract", { schema: "dc_scm_payment" })
+@Entity("contract", { schema: "dc_scm_payment_test" })
 export class Contract {
   @PrimaryGeneratedColumn({ type: "bigint", name: "id", comment: "主键id" })
   id: string;

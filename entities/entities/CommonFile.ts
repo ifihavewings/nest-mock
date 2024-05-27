@@ -1,7 +1,7 @@
 import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
 
 @Index("common_file_i0", ["originTableId", "delFlag"], {})
-@Entity("common_file", { schema: "dc_scm_payment" })
+@Entity("common_file", { schema: "dc_scm_payment_test" })
 export class CommonFile {
   @PrimaryGeneratedColumn({ type: "bigint", name: "id", comment: "主键id" })
   id: string;

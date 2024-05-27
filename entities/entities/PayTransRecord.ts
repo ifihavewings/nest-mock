@@ -2,7 +2,7 @@ import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
 
 @Index("trans_no_key", ["transNo"], {})
 @Index("order_no_key", ["paymentOrderNo"], {})
-@Entity("pay_trans_record", { schema: "dc_scm_payment" })
+@Entity("pay_trans_record", { schema: "dc_scm_payment_test" })
 export class PayTransRecord {
   @PrimaryGeneratedColumn({ type: "bigint", name: "id", comment: "主键id" })
   id: string;

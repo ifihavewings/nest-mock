@@ -1,7 +1,7 @@
 import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
 
 @Index("day_date_no_key", ["dayDate"], { unique: true })
-@Entity("holiday_manage_info", { schema: "dc_scm_payment" })
+@Entity("holiday_manage_info", { schema: "dc_scm_payment_test" })
 export class HolidayManageInfo {
   @PrimaryGeneratedColumn({ type: "bigint", name: "id", comment: "主键id" })
   id: string;

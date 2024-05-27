@@ -1,7 +1,7 @@
 import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
 
 @Index("bus_no", ["busNo"], {})
-@Entity("mq_log", { schema: "dc_scm_payment" })
+@Entity("mq_log", { schema: "dc_scm_payment_test" })
 export class MqLog {
   @PrimaryGeneratedColumn({ type: "bigint", name: "id", comment: "主键id" })
   id: string;

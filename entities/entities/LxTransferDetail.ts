@@ -2,7 +2,7 @@ import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
 
 @Index("credit_id_key", ["creditId"], { unique: true })
 @Index("credit_bill_no_key", ["creditBillCode"], { unique: true })
-@Entity("lx_transfer_detail", { schema: "dc_scm_payment" })
+@Entity("lx_transfer_detail", { schema: "dc_scm_payment_test" })
 export class LxTransferDetail {
   @PrimaryGeneratedColumn({ type: "bigint", name: "id", comment: "主键id" })
   id: string;

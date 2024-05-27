@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity("fnc_ctr", { schema: "dc_scm_payment" })
+@Entity("fnc_ctr", { schema: "dc_scm_payment_test" })
 export class FncCtr {
   @PrimaryGeneratedColumn({ type: "bigint", name: "id", comment: "主键id" })
   id: string;

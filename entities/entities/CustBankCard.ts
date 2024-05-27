@@ -2,7 +2,7 @@ import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
 
 @Index("bank_card_no_key", ["bankCardNo"], {})
 @Index("cust_id_key", ["custId"], {})
-@Entity("cust_bank_card", { schema: "dc_scm_payment" })
+@Entity("cust_bank_card", { schema: "dc_scm_payment_test" })
 export class CustBankCard {
   @PrimaryGeneratedColumn({ type: "bigint", name: "id", comment: "主键id" })
   id: string;

@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity("ext_trs_record", { schema: "dc_scm_payment" })
+@Entity("ext_trs_record", { schema: "dc_scm_payment_test" })
 export class ExtTrsRecord {
   @PrimaryGeneratedColumn({ type: "bigint", name: "id", comment: "主键id" })
   id: string;

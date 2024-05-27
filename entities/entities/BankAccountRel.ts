@@ -1,7 +1,7 @@
 import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
 
 @Index("bind_key", ["accountId", "bankCardId", "bindSta"], { unique: true })
-@Entity("bank_account_rel", { schema: "dc_scm_payment" })
+@Entity("bank_account_rel", { schema: "dc_scm_payment_test" })
 export class BankAccountRel {
   @PrimaryGeneratedColumn({ type: "bigint", name: "id", comment: "主键id" })
   id: string;

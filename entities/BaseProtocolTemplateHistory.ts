@@ -5,7 +5,7 @@ import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
   ["templateService", "custNo", "custName", "protocolType", "templateType"],
   {}
 )
-@Entity("base_protocol_template_history", { schema: "dc_scm_payment" })
+@Entity("base_protocol_template_history", { schema: "dc_scm_payment_test" })
 export class BaseProtocolTemplateHistory {
   @PrimaryGeneratedColumn({ type: "bigint", name: "id", comment: "主键id" })
   id: string;
@@ -27,7 +27,7 @@ export class BaseProtocolTemplateHistory {
   @Column("varchar", {
     name: "template_service",
     comment:
-      "使用模板的数据库名称 dc_scm,dc_scm_e,dc_scm_payment,dc_scm_credit,dc_scm_company,dc_scm_debt",
+      "使用模板的数据库名称 dc_scm,dc_scm_e,dc_scm_payment_test,dc_scm_credit,dc_scm_company,dc_scm_debt",
     length: 20,
   })
   templateService: string;

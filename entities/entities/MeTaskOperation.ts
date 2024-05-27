@@ -6,7 +6,7 @@ import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
   {}
 )
 @Index("corp_id_idx", ["corpId"], {})
-@Entity("me_task_operation", { schema: "dc_scm_payment" })
+@Entity("me_task_operation", { schema: "dc_scm_payment_test" })
 export class MeTaskOperation {
   @PrimaryGeneratedColumn({ type: "bigint", name: "id" })
   id: string;
