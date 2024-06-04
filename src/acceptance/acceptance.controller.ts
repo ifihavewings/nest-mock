@@ -9,6 +9,10 @@ export class AcceptanceController {
     add(@Body() body) {
         return this.acceptanceService.add(body)
     }
+    @Post("del")
+    del(@Body() body) {
+        return this.acceptanceService.del(body)
+    }
     @Post("list")
     getList(@Body() body) {
         return this.acceptanceService.getList(body)

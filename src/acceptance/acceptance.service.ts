@@ -14,6 +14,11 @@ export class AcceptanceService {
         return res;
     }
 
+    async del(body) {
+        const res = await this.scbHintAcceptApply.update(body.id, {deleteFlag: '1'})
+        return res
+    }
+
     async getList(body) {
         const data = await this.scbHintAcceptApply.find({
             where: {
