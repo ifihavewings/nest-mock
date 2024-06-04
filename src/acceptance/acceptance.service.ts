@@ -9,10 +9,16 @@ export class AcceptanceService {
 
     }
 
+    async add(body) {
+        const res = await this.scbHintAcceptApply.save(body)
+        return res;
+    }
+
     async getList(body) {
-        console.log('body')
-        console.log(body)
         const data = await this.scbHintAcceptApply.find({
+            where: {
+                deleteFlag : '0',
+            },
             order: {
                 createTime: 'DESC',
               },

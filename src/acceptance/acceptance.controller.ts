@@ -5,10 +5,12 @@ export class AcceptanceController {
     constructor(private acceptanceService: AcceptanceService) {
 
     }
-
+    @Post("add")
+    add(@Body() body) {
+        return this.acceptanceService.add(body)
+    }
     @Post("list")
     getList(@Body() body) {
-        console.log(this.acceptanceService.getList(body))
         return this.acceptanceService.getList(body)
     }
 }
