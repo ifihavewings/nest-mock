@@ -10,11 +10,13 @@ export class AcceptanceService {
     }
 
     async getList(body) {
+        console.log('body')
+        console.log(body)
         const data = await this.scbHintAcceptApply.find({
             order: {
                 createTime: 'DESC',
               },
-              skip: (body.curent - 1) * body.size,
+              skip: (body.current - 1) * body.size,
               take: body.size
         })
 

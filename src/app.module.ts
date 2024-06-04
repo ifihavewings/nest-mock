@@ -16,9 +16,7 @@ import { BillModule } from './bill/bill.module';
 import { UploadModule } from "./upload/upload.module";
 import { BaseModule } from './base/base.module';
 import { PaymentModule } from './payment/payment.module';
-import { AcceptanceController } from './acceptance/acceptance.controller';
 import { AcceptanceModule } from './acceptance/acceptance.module';
-import { AcceptanceService } from './acceptance/acceptance.service';
 // MySQLModule.forRoot(MYSQL),
 @Module({
   imports: [CatsModule, FishModule, SysModule, MatieralsModule,
@@ -64,14 +62,13 @@ import { AcceptanceService } from './acceptance/acceptance.service';
       // entities: [BusinessChannel], // 确保包含你的实体 
     }),
     WithdrawModule, BillModule, UploadModule, BaseModule, PaymentModule, AcceptanceModule],
-  controllers: [AppController, DogController, AcceptanceController],
+  controllers: [AppController, DogController],
   providers: [
     AppService,
     {
       provide: APP_INTERCEPTOR,
       useClass: ResponseInterceptor, // 将拦截器注册为全局拦截器  
     },
-    AcceptanceService,
   ],
 })
 export class AppModule {

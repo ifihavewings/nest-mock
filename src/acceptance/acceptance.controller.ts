@@ -8,6 +8,7 @@ export class AcceptanceController {
 
     @Post("list")
     getList(@Body() body) {
+        console.log(this.acceptanceService.getList(body))
         return this.acceptanceService.getList(body)
     }
 }
