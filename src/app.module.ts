@@ -16,6 +16,9 @@ import { BillModule } from './bill/bill.module';
 import { UploadModule } from "./upload/upload.module";
 import { BaseModule } from './base/base.module';
 import { PaymentModule } from './payment/payment.module';
+import { AcceptanceController } from './acceptance/acceptance.controller';
+import { AcceptanceModule } from './acceptance/acceptance.module';
+import { AcceptanceService } from './acceptance/acceptance.service';
 // MySQLModule.forRoot(MYSQL),
 @Module({
   imports: [CatsModule, FishModule, SysModule, MatieralsModule,
@@ -60,14 +63,15 @@ import { PaymentModule } from './payment/payment.module';
       // 果果不使用 autoLoadEntities: true, 应该使用下面一行
       // entities: [BusinessChannel], // 确保包含你的实体 
     }),
-    WithdrawModule, BillModule, UploadModule, BaseModule, PaymentModule],
-  controllers: [AppController, DogController],
+    WithdrawModule, BillModule, UploadModule, BaseModule, PaymentModule, AcceptanceModule],
+  controllers: [AppController, DogController, AcceptanceController],
   providers: [
     AppService,
     {
       provide: APP_INTERCEPTOR,
       useClass: ResponseInterceptor, // 将拦截器注册为全局拦截器  
     },
+    AcceptanceService,
   ],
 })
 export class AppModule {
