@@ -17,4 +17,10 @@ export class AcceptanceController {
     getList(@Body() body) {
         return this.acceptanceService.getList(body)
     }
+
+
+    @Post("sign/add")
+    signAdd(@Body() body) {
+        return this.acceptanceService.addSign(body)
+    }
 }

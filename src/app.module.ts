@@ -17,6 +17,7 @@ import { UploadModule } from "./upload/upload.module";
 import { BaseModule } from './base/base.module';
 import { PaymentModule } from './payment/payment.module';
 import { AcceptanceModule } from './acceptance/acceptance.module';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 // MySQLModule.forRoot(MYSQL),
 @Module({
   imports: [CatsModule, FishModule, SysModule, MatieralsModule,
@@ -74,5 +75,15 @@ import { AcceptanceModule } from './acceptance/acceptance.module';
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(LoggerMiddleware).forRoutes("matierals")
+  }
+  configureSwagger(app) {
+    const options = new DocumentBuilder()
+      .setTitle('NestJS API')
+      .setDescription('The API description')
+      .setVersion('1.0')
+      .addTag('nestjs')
+      .build();
+    const document = SwaggerModule.createDocument(app, options);
+    SwaggerModule.setup('api', app, document);
   }
 }

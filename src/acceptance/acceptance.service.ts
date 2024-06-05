@@ -1,11 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { ScbHintAcceptApply } from 'entities/ScbHintAcceptApply';
+import { ScbHintCollectApply } from 'entities/ScbHintCollectApply';
 import { InjectRepository } from "@nestjs/typeorm"
 import { Repository } from "typeorm"
 @Injectable()
 export class AcceptanceService {
     constructor(
-        @InjectRepository(ScbHintAcceptApply) private readonly scbHintAcceptApply: Repository<ScbHintAcceptApply>) {
+        @InjectRepository(ScbHintAcceptApply) private readonly scbHintAcceptApply: Repository<ScbHintAcceptApply>,
+        @InjectRepository(ScbHintCollectApply) private readonly scbHintCollectApply: Repository<ScbHintCollectApply>) {
 
     }
 
@@ -37,6 +39,13 @@ export class AcceptanceService {
           return {
             records: data,
             total
+        }
+    }
+
+    async addSign(body) {
+        const data = await this.scbHintCollectApply.save(body)
+        return {
+            data
         }
     }
 }

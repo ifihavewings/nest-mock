@@ -16,6 +16,9 @@ export class BillService {
         return data
     }
     async list(body) {
+        if(body.current) {
+            body.page = body.current
+        }
         const data = await this.scbBill.find({
             skip: (body.page - 1) * body.size,
             take: body.size,

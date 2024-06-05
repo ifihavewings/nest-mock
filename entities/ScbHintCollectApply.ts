@@ -1,4 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, BeforeUpdate } from "typeorm";
 
 @Entity("scb_hint_collect_apply", { schema: "scb_bill" })
 export class ScbHintCollectApply {
@@ -215,4 +216,15 @@ export class ScbHintCollectApply {
     length: 32,
   })
   creDtTm: string | null;
+
+  @BeforeInsert()
+  updateCreateTime() {
+    this.createTime = new Date()
+    this.deleteFlag = '0'
+
+  }
+  @BeforeUpdate()
+  updateUpdateTime() {
+    this.updateTime = new Date()
+  }
 }
