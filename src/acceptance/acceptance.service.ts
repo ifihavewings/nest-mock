@@ -41,11 +41,31 @@ export class AcceptanceService {
             total
         }
     }
-
+    
     async addSign(body) {
         const data = await this.scbHintCollectApply.save(body)
         return {
             data
+        }
+    }
+    async signList(body) {
+        const data = await this.scbHintCollectApply.find({
+            where: {
+                deleteFlag : '0',
+            },
+            order: {
+                createTime: 'DESC',
+              },
+              skip: (body.current - 1) * body.size,
+              take: body.size
+        })
+    
+        const total = await this.scbHintCollectApply.count({
+          })
+    
+          return {
+            records: data,
+            total
         }
     }
 }
